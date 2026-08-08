@@ -3,6 +3,8 @@ export type Language = 'uk' | 'en'
 export interface Translations {
   title: string
   subtitle: string
+  tabQuantity: string
+  tabTime: string
   totalLabel: string
   perPalletLabel: string
   rowsLabel: string
@@ -21,6 +23,24 @@ export interface Translations {
   withPartial: string
   totalBreakdownPartial: (full: string, remainder: string, bottleSuffix: string) => string
   totalBreakdownExact: (full: string) => string
+
+  // Time-based calculator translations
+  currentTimeLabel: string
+  currentTimeAuto: string
+  targetTimeLabel: string
+  targetTimePlaceholder: string
+  palletDurationLabel: string
+  hoursLabel: string
+  minutesLabel: string
+  hoursPlaceholder: string
+  minutesPlaceholder: string
+  timeRemainingCard: string
+  palletsNeededCard: string
+  finishTimeCard: string
+  useCurrentTimeBtn: string
+  timeBreakdownNote: (full: number, partialMins: number) => string
+  timeExactNote: (full: number) => string
+
   installApp: string
   installSubtitle: string
   installBtn: string
@@ -33,6 +53,8 @@ export const translations: Record<Language, Translations> = {
   uk: {
     title: 'Калькулятор піддонів',
     subtitle: 'Розрахунок кількості піддонів та рядів',
+    tabQuantity: 'За кількістю',
+    tabTime: 'За часом',
     totalLabel: 'Скільки пляшок треба',
     perPalletLabel: 'Пляшок у піддоні',
     rowsLabel: 'Рядів у піддоні',
@@ -53,6 +75,25 @@ export const translations: Record<Language, Translations> = {
       `(${full} повних + 1 неповний з ${remainder} ${bottleSuffix})`,
     totalBreakdownExact: (full) =>
       `(${full} повних піддонів, неповного немає)`,
+
+    currentTimeLabel: 'Скільки зараз годин',
+    currentTimeAuto: '(за замовчуванням: зараз)',
+    targetTimeLabel: 'Час, до якого треба піддони',
+    targetTimePlaceholder: 'напр. 18:00',
+    palletDurationLabel: 'Час закінчення 1 піддону',
+    hoursLabel: 'год',
+    minutesLabel: 'хв',
+    hoursPlaceholder: 'год',
+    minutesPlaceholder: 'хв',
+    timeRemainingCard: 'Загальний час роботи',
+    palletsNeededCard: 'Потрібно піддонів',
+    finishTimeCard: 'Запасу вистачить до',
+    useCurrentTimeBtn: 'Зараз',
+    timeBreakdownNote: (full, partialMins) =>
+      `(${full} повних + 1 неповний на ${partialMins} хв)`,
+    timeExactNote: (full) =>
+      `(${full} повних піддонів рівно)`,
+
     installApp: 'Встановити додаток',
     installSubtitle: 'Швидкий доступ з головного екрана',
     installBtn: 'Додати',
@@ -63,6 +104,8 @@ export const translations: Record<Language, Translations> = {
   en: {
     title: 'Pallet Calculator',
     subtitle: 'Calculate pallets and rows quantity',
+    tabQuantity: 'By Quantity',
+    tabTime: 'By Time',
     totalLabel: 'Bottles needed',
     perPalletLabel: 'Bottles per pallet',
     rowsLabel: 'Rows per pallet',
@@ -83,6 +126,25 @@ export const translations: Record<Language, Translations> = {
       `(${full} full + 1 partial with ${remainder} ${bottleSuffix})`,
     totalBreakdownExact: (full) =>
       `(${full} full pallets, no partial needed)`,
+
+    currentTimeLabel: 'Current time',
+    currentTimeAuto: '(default: now)',
+    targetTimeLabel: 'Target time needed until',
+    targetTimePlaceholder: 'e.g. 18:00',
+    palletDurationLabel: 'Time per 1 pallet',
+    hoursLabel: 'hrs',
+    minutesLabel: 'mins',
+    hoursPlaceholder: 'hrs',
+    minutesPlaceholder: 'mins',
+    timeRemainingCard: 'Total duration',
+    palletsNeededCard: 'Pallets needed',
+    finishTimeCard: 'Pallets will last until',
+    useCurrentTimeBtn: 'Now',
+    timeBreakdownNote: (full, partialMins) =>
+      `(${full} full + 1 partial for ${partialMins} mins)`,
+    timeExactNote: (full) =>
+      `(${full} full pallets exact)`,
+
     installApp: 'Install App',
     installSubtitle: 'Quick access from home screen',
     installBtn: 'Add',
