@@ -55,7 +55,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: max(0.6rem, env(safe-area-inset-top)) 0.85rem max(0.6rem, env(safe-area-inset-bottom)) 0.85rem;
+  padding: max(0.6rem, env(safe-area-inset-top)) max(0.85rem, env(safe-area-inset-right)) max(0.6rem, env(safe-area-inset-bottom)) max(0.85rem, env(safe-area-inset-left));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -195,7 +195,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -522,13 +522,15 @@ h1 {
 /* Smartphone Mobile-First Bottom Docked Tab Bar & UX Optimizations */
 @media (max-width: 600px) {
   body {
-    padding: max(0.3rem, env(safe-area-inset-top)) 0.4rem 0 0.4rem;
+    padding: max(0.3rem, env(safe-area-inset-top)) max(0.4rem, env(safe-area-inset-right)) 0 max(0.4rem, env(safe-area-inset-left));
   }
 
   .wrap {
     max-height: none;
     height: 100dvh;
     padding-bottom: calc(58px + max(8px, env(safe-area-inset-bottom)));
+    padding-left: max(4px, env(safe-area-inset-left));
+    padding-right: max(4px, env(safe-area-inset-right));
   }
 
   .tab-switcher {
@@ -548,7 +550,7 @@ h1 {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     z-index: 1000;
-    padding: 6px 4px calc(6px + max(6px, env(safe-area-inset-bottom))) 4px;
+    padding: 6px max(6px, env(safe-area-inset-right)) calc(6px + max(6px, env(safe-area-inset-bottom))) max(6px, env(safe-area-inset-left));
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   }
 
