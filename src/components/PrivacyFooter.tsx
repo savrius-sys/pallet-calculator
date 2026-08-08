@@ -1,4 +1,4 @@
-import { useRef, type ChangeEvent } from 'react'
+import { useState, useRef, type ChangeEvent } from 'react'
 import type { Translations } from '../i18n'
 
 interface PrivacyFooterProps {
@@ -9,6 +9,15 @@ interface PrivacyFooterProps {
 
 export function PrivacyFooter({ t, onExport, onImport }: PrivacyFooterProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [isNoteHidden, setIsNoteHidden] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('hide_privacy_note') === 'true'
+  })
+
+  const handleDismissNote = () => {
+    setIsNoteHidden(true)
+    localStorage.setItem('hide_privacy_note', 'true')
+  }
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -22,23 +31,36 @@ export function PrivacyFooter({ t, onExport, onImport }: PrivacyFooterProps) {
 
   return (
     <footer className="global-privacy-footer">
-      <div className="privacy-banner">
-        <svg
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="privacy-icon"
-        >
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-        </svg>
-        <span>{t.privacyNote}</span>
-      </div>
+      {!isNoteHidden && (
+        <div className="privacy-banner">
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '6px', flex: 1 }}>
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="privacy-icon"
+              style={{ flexShrink: 0, marginTop: '2px' }}
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>{t.privacyNote}</span>
+          </div>
+          <button
+            type="button"
+            className="banner-close-btn"
+            onClick={handleDismissNote}
+            title="Прибрати примітку"
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       <div className="data-actions-row">
         <button
