@@ -1,0 +1,18 @@
+{
+  "name": "Калькулятор піддонів",
+  "short_name": "Піддони",
+  "description": "Розрахунок кількості піддонів та рядів для пляшок",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f8fafc",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
