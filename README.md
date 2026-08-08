@@ -1,75 +1,37 @@
-# React + TypeScript + Vite
+# Pallet Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Українська версія (Ukrainian)](README.ua.md)
 
-Currently, two official plugins are available:
+Web application for calculations in a bottling workshop. This application may not be suitable for everyone, as processes may differ across different enterprises.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Quantity Calculator**: Calculate full pallets, bottle remainder, and layer/row counts on the partial pallet.
+- **Time Calculator**: Calculate required pallets until a target time or estimate stock duration.
+- **Layer Stopwatch**: Calculate pallet processing time based on layer speeds with a built-in stopwatch.
+- **Pallet Registry**: Save, edit, and search product pallet presets (bottle count, layers, time, zone, notes). One-tap preset loading into the calculator.
+- **Analytics**: Statistics dashboard for total pallets, bottles, layers, and usage metrics.
+- **Local Storage**: 100% offline-first local storage with JSON export and import capabilities.
+- **PWA & Mobile UI**: Mobile-optimized bottom navigation bar, compact layout, and full offline support.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19, TypeScript
+- Vite 6
+- Vanilla CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Development
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Run local development server
+npm run dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Build for production
+npm run build
 
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# Run linter
+npm run lint
 ```

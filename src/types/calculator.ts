@@ -1,4 +1,4 @@
-export type TabType = 'quantity' | 'time'
+export type TabType = 'quantity' | 'time' | 'layer' | 'crud' | 'stats'
 
 export interface CalculationInputs {
   total: string
@@ -40,6 +40,48 @@ export interface TimeCalculatorResult {
   finishTimeFormatted: string
   summaryNoteText: string
   palletsNeededText: string
+}
+
+export interface LayerCalculatorInputs {
+  rowMinutes: string
+  rowSeconds: string
+  rowsPerPallet: string
+}
+
+export interface LayerCalculatorResult {
+  hasInputs: boolean
+  timePerPalletText: string
+  breakdownNoteText: string
+}
+
+export interface PalletRecord {
+  id: string
+  productName: string
+  rows: string
+  quantity: string
+  palletTime: string
+  note: string
+  date: string
+}
+
+export interface HistoryItem {
+  id: string
+  timestamp: string
+  tab: TabType
+  title: string
+  summary: string
+  inputs: {
+    total?: string
+    perPallet?: string
+    rows?: string
+    currentTime?: string
+    targetTime?: string
+    durationHours?: string
+    durationMinutes?: string
+    rowMinutes?: string
+    rowSeconds?: string
+    rowsPerPallet?: string
+  }
 }
 
 export interface PresetOption {

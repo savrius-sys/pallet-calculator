@@ -5,31 +5,43 @@ interface HeaderProps {
   t: Translations
   lang: Language
   onChangeLang: (lang: Language) => void
+  historyCount: number
+  onOpenHistory: () => void
 }
 
-export function Header({ t, lang, onChangeLang }: HeaderProps) {
+export function Header({
+  t,
+  lang,
+  onChangeLang,
+  historyCount,
+  onOpenHistory
+}: HeaderProps) {
   return (
-    <div className="header-container">
-      <div className="header-icon">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+    <div className="header-container compact-top-bar">
+      <div className="header-actions">
+        <button
+          type="button"
+          className="history-btn"
+          onClick={onOpenHistory}
+          title={t.historyTitle}
         >
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-        </svg>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="12 6 12 12 16 14" />
+          </svg>
+          {historyCount > 0 && <span className="history-badge">{historyCount}</span>}
+        </button>
+        <LanguageSwitcher lang={lang} onChangeLang={onChangeLang} />
       </div>
-      <div className="header-title-box">
-        <h1>{t.title}</h1>
-        <div className="subtitle">{t.subtitle}</div>
-      </div>
-      <LanguageSwitcher lang={lang} onChangeLang={onChangeLang} />
     </div>
   )
 }

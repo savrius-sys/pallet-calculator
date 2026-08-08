@@ -1,3 +1,4 @@
+import { TimeInput24 } from './TimeInput24'
 import type { Translations } from '../i18n'
 
 interface TimeCalculatorFormProps {
@@ -30,7 +31,7 @@ export function TimeCalculatorForm({
   const isAutoCurrentTime = currentTime.trim() === ''
 
   return (
-    <div className="form-section">
+    <div className="form-section compact-form">
       <div className="input-group">
         <label htmlFor="durationHours">
           <span>{t.palletDurationLabel}</span>
@@ -66,39 +67,40 @@ export function TimeCalculatorForm({
         </div>
       </div>
 
-      <div className="input-group">
-        <label htmlFor="targetTime">{t.targetTimeLabel}</label>
-        <input
-          type="time"
-          id="targetTime"
-          value={targetTime}
-          onChange={(e) => setTargetTime(e.target.value)}
-          placeholder={t.targetTimePlaceholder}
-        />
-      </div>
-
-      <div className="input-group">
-        <label htmlFor="currentTime">
-          <span>{t.currentTimeLabel}</span>
-          <span className="label-hint">
-            {isAutoCurrentTime ? `${t.currentTimeAuto} (${systemTime})` : ''}
-          </span>
-        </label>
-        <div className="time-input-wrapper">
-          <input
-            type="time"
-            id="currentTime"
-            value={currentTime}
-            onChange={(e) => setCurrentTime(e.target.value)}
+      <div className="grid2">
+        <div className="input-group">
+          <label htmlFor="targetTime">{t.targetTimeLabel}</label>
+          <TimeInput24
+            id="targetTime"
+            value={targetTime}
+            onChange={setTargetTime}
+            placeholder={t.targetTimePlaceholder}
           />
-          <button
-            type="button"
-            className="now-btn"
-            onClick={onUseNow}
-            title={t.useCurrentTimeBtn}
-          >
-            {t.useCurrentTimeBtn}
-          </button>
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="currentTime">
+            <span>{t.currentTimeLabel}</span>
+            <span className="label-hint">
+              {isAutoCurrentTime ? `(${systemTime})` : ''}
+            </span>
+          </label>
+          <div className="time-input-wrapper">
+            <TimeInput24
+              id="currentTime"
+              value={currentTime}
+              onChange={setCurrentTime}
+              placeholder={systemTime}
+            />
+            <button
+              type="button"
+              className="now-btn"
+              onClick={onUseNow}
+              title={t.useCurrentTimeBtn}
+            >
+              {t.useCurrentTimeBtn}
+            </button>
+          </div>
         </div>
       </div>
     </div>

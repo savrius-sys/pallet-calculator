@@ -5,12 +5,18 @@ export function usePwaInstall() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
   const [showIosGuide, setShowIosGuide] = useState<boolean>(false)
 
+  const [isDismissed, setIsDismissed] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    return localStorage.getItem('pallet_hide_install_guide') === 'true'
+  })
+
   const [isStandalone] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false
     return (
       window.matchMedia('(display-mode: standalone)').matches ||
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (navigator as any).standalone === true
+      (navigator as any).standalone === true ||
+      document.referrer.includes('android-app://')
     )
   })
 
@@ -47,12 +53,19 @@ export function usePwaInstall() {
     setShowIosGuide((prev) => !prev)
   }, [])
 
+  const dismissGuide = useCallback(() => {
+    setIsDismissed(true)
+    localStorage.setItem('pallet_hide_install_guide', 'true')
+  }, [])
+
   return {
     isStandalone,
+    isDismissed,
     isIos,
     deferredPrompt,
     showIosGuide,
     handleInstallClick,
-    toggleIosGuide
+    toggleIosGuide,
+    dismissGuide
   }
 }

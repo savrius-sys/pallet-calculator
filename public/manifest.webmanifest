@@ -1,12 +1,12 @@
 {
-  "name": "Калькулятор піддонів",
-  "short_name": "Піддони",
-  "description": "Розрахунок кількості піддонів та рядів для пляшок",
+  "name": "Калькулятор палет",
+  "short_name": "Палети",
+  "description": "Розрахунок кількості палет та рядів для пляшок",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#f8fafc",
-  "theme_color": "#3b82f6",
+  "background_color": "#09090b",
+  "theme_color": "#ff6b00",
   "icons": [
     {
       "src": "/favicon.svg",

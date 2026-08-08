@@ -1,16 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <rect width="512" height="512" rx="128" fill="url(#blueGradient)"/>
   <defs>
-    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="100%" stop-color="#1d4ed8"/>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff7a00"/>
+      <stop offset="50%" stop-color="#ff6b00"/>
+      <stop offset="100%" stop-color="#d95200"/>
     </linearGradient>
+    
+    <!-- Top Bottle Layer Glow -->
+    <linearGradient id="glassGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+
+    <filter id="iconShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
   </defs>
-  <g fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" transform="translate(96, 96)">
-    <rect x="32" y="112" width="256" height="200" rx="24" ry="24" />
-    <path d="M224 312V80a32 32 0 0 0-32-32h-64a32 32 0 0 0-32 32v232" />
-    <line x1="32" y1="192" x2="288" y2="192" />
-    <line x1="128" y1="112" x2="128" y2="312" />
-    <line x1="192" y1="112" x2="192" y2="312" />
+
+  <!-- Base App Icon Squircle (iOS / Android Style) -->
+  <rect width="512" height="512" rx="116" fill="url(#bgGrad)" filter="url(#dropShadow)"/>
+
+  <!-- Subtle Inner Glass Top Highlight -->
+  <rect x="24" y="24" width="464" height="232" rx="92" fill="url(#glassGlow)"/>
+
+  <!-- Pallet & Layer Stack Symbol -->
+  <g transform="translate(86, 76)" filter="url(#iconShadow)">
+    <!-- Stacked Boxes / Bottle Layers (3 Isometric Rows) -->
+    <!-- Layer 3 (Top Row) -->
+    <rect x="110" y="44" width="120" height="70" rx="14" fill="#ffffff" opacity="0.95"/>
+    <path d="M145 66h50M170 44v70" stroke="#ff6b00" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Layer 2 (Middle Row - 2 Boxes) -->
+    <rect x="40" y="130" width="120" height="74" rx="14" fill="#ffffff" opacity="0.95"/>
+    <path d="M75 152h50M100 130v74" stroke="#ff6b00" stroke-width="6" stroke-linecap="round"/>
+    
+    <rect x="180" y="130" width="120" height="74" rx="14" fill="#ffffff" opacity="0.95"/>
+    <path d="M215 152h50M240 130v74" stroke="#ff6b00" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Layer 1 (Pallet Wooden Structure Base) -->
+    <!-- Top Deck Board -->
+    <rect x="20" y="222" width="300" height="22" rx="7" fill="#ffffff"/>
+    
+    <!-- Stringer Blocks (3 Feet) -->
+    <rect x="30" y="244" width="44" height="34" rx="6" fill="#ffffff" opacity="0.85"/>
+    <rect x="148" y="244" width="44" height="34" rx="6" fill="#ffffff" opacity="0.85"/>
+    <rect x="266" y="244" width="44" height="34" rx="6" fill="#ffffff" opacity="0.85"/>
+
+    <!-- Bottom Deck Board -->
+    <rect x="20" y="278" width="300" height="18" rx="6" fill="#ffffff"/>
+
+    <!-- Forklift Entry Cutouts Symbol -->
+    <path d="M74 261h74M192 261h74" stroke="#ff6b00" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
   </g>
 </svg>
