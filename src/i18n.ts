@@ -125,6 +125,42 @@ export interface Translations {
   installGuideTitle: string
   iosGuideSteps: string
   androidGuideSteps: string
+
+  // Achievements System
+  achievementsTitle: string
+  achievementsUnlocked: (unlocked: number, total: number) => string
+  achievementUnlockedToast: string
+  achievementsCategoryCalc: string
+  achievementsCategoryRegistry: string
+  achievementsCategoryTools: string
+  achievementsCategorySpecial: string
+  achievementUnlockedAt: (dateStr: string) => string
+  achievementLocked: string
+
+  ach_first_calc_title: string
+  ach_first_calc_desc: string
+  ach_calc_10_title: string
+  ach_calc_10_desc: string
+  ach_calc_50_title: string
+  ach_calc_50_desc: string
+  ach_time_master_title: string
+  ach_time_master_desc: string
+  ach_layer_master_title: string
+  ach_layer_master_desc: string
+  ach_stopwatch_used_title: string
+  ach_stopwatch_used_desc: string
+  ach_registry_first_title: string
+  ach_registry_first_desc: string
+  ach_registry_5_title: string
+  ach_registry_5_desc: string
+  ach_registry_pick_title: string
+  ach_registry_pick_desc: string
+  ach_night_shift_title: string
+  ach_night_shift_desc: string
+  ach_backup_done_title: string
+  ach_backup_done_desc: string
+  ach_stats_viewed_title: string
+  ach_stats_viewed_desc: string
 }
 
 export const translations: Record<Language, Translations> = {
@@ -249,7 +285,42 @@ export const translations: Record<Language, Translations> = {
     installBtn: 'Додати',
     installGuideTitle: 'Як додати на головний екран?',
     iosGuideSteps: 'iOS (Safari): Натисніть меню (три крапки з правого боку або іконку Поділитися) ➔ «Поширити» ➔ «Переглянути ще» ➔ «На початковий екран».',
-    androidGuideSteps: 'Android / Інші браузери: Залежить від вашого браузера (Chrome, Firefox тощо) — відкрийте меню браузера (три крапки у кутку) та виберіть «Встановити додаток» або «Додати на головний екран».'
+    androidGuideSteps: 'Android / Інші браузери: Залежить від вашого браузера (Chrome, Firefox тощо) — відкрийте меню браузера (три крапки у кутку) та виберіть «Встановити додаток» або «Додати на головний екран».',
+
+    achievementsTitle: 'Досягнення та ачівки',
+    achievementsUnlocked: (unlocked, total) => `Розблоковано ${unlocked} з ${total}`,
+    achievementUnlockedToast: '🏆 Нове досягнення розблоковано!',
+    achievementsCategoryCalc: 'Розрахунки',
+    achievementsCategoryRegistry: 'База палет',
+    achievementsCategoryTools: 'Інструменти',
+    achievementsCategorySpecial: 'Особливі',
+    achievementUnlockedAt: (dateStr) => `Отримано: ${dateStr}`,
+    achievementLocked: 'Заблоковано',
+
+    ach_first_calc_title: '🎯 Перші кроки',
+    ach_first_calc_desc: 'Виконайте свій перший розрахунок кількості палет',
+    ach_calc_10_title: '🔢 Досвідчений рахівник',
+    ach_calc_10_desc: 'Зробіть 10 розрахунків у додатку',
+    ach_calc_50_title: '🏆 Палетний Гуру',
+    ach_calc_50_desc: 'Зробіть 50 розрахунків у додатку',
+    ach_time_master_title: '⏱️ Повелитель часу',
+    ach_time_master_desc: 'Скористайтеся калькулятором палет за часом',
+    ach_layer_master_title: '🥞 Майстер шарів',
+    ach_layer_master_desc: 'Розрахуйте час обробки рядів (шарів)',
+    ach_stopwatch_used_title: '⏱️ Секундометрист',
+    ach_stopwatch_used_desc: 'Заміряйте час 1 ряду за допомогою секундоміра',
+    ach_registry_first_title: '📦 Перший запис',
+    ach_registry_first_desc: 'Збережіть перший тип палети у базу',
+    ach_registry_5_title: '📚 Власник бази',
+    ach_registry_5_desc: 'Збережіть 5 різних типів палет у базу',
+    ach_registry_pick_title: '⚡ Швидка підстановка',
+    ach_registry_pick_desc: 'Виберіть готовий шаблон палети з бази',
+    ach_night_shift_title: '🦉 Нічна зміна',
+    ach_night_shift_desc: 'Зробіть розрахунок палет у нічний час (22:00 – 06:00)',
+    ach_backup_done_title: '💾 Хранитель даних',
+    ach_backup_done_desc: 'Зробіть резервну копію даних (JSON)',
+    ach_stats_viewed_title: '📊 Головний аналітик',
+    ach_stats_viewed_desc: 'Перегляньте вкладку аналітики'
   },
   en: {
     title: 'Pallet Calculator',
@@ -372,7 +443,42 @@ export const translations: Record<Language, Translations> = {
     installBtn: 'Add',
     installGuideTitle: 'How to add to Home Screen?',
     iosGuideSteps: 'iOS (Safari): Open browser menu (three dots on right side or Share icon) ➔ "Share" ➔ "More" ➔ "Add to Home Screen".',
-    androidGuideSteps: 'Android / Other browsers: Depends on your browser (Chrome, Firefox, etc.) — open browser menu (three dots in corner) and tap "Install app" or "Add to Home Screen".'
+    androidGuideSteps: 'Android / Other browsers: Depends on your browser (Chrome, Firefox, etc.) — open browser menu (three dots in corner) and tap "Install app" or "Add to Home Screen".',
+
+    achievementsTitle: 'Achievements & Badges',
+    achievementsUnlocked: (unlocked, total) => `Unlocked ${unlocked} of ${total}`,
+    achievementUnlockedToast: '🏆 New achievement unlocked!',
+    achievementsCategoryCalc: 'Calculations',
+    achievementsCategoryRegistry: 'Pallet Registry',
+    achievementsCategoryTools: 'Tools',
+    achievementsCategorySpecial: 'Special',
+    achievementUnlockedAt: (dateStr) => `Unlocked: ${dateStr}`,
+    achievementLocked: 'Locked',
+
+    ach_first_calc_title: '🎯 First Steps',
+    ach_first_calc_desc: 'Perform your first pallet calculation',
+    ach_calc_10_title: '🔢 Experienced Counter',
+    ach_calc_10_desc: 'Complete 10 calculations in the app',
+    ach_calc_50_title: '🏆 Pallet Guru',
+    ach_calc_50_desc: 'Complete 50 calculations in the app',
+    ach_time_master_title: '⏱️ Time Lord',
+    ach_time_master_desc: 'Use the time-based pallet calculator',
+    ach_layer_master_title: '🥞 Layer Master',
+    ach_layer_master_desc: 'Calculate layer/row processing time',
+    ach_stopwatch_used_title: '⏱️ Chronomaster',
+    ach_stopwatch_used_desc: 'Measure row duration using built-in stopwatch',
+    ach_registry_first_title: '📦 First Entry',
+    ach_registry_first_desc: 'Save your first pallet type to the registry',
+    ach_registry_5_title: '📚 Registry Owner',
+    ach_registry_5_desc: 'Save 5 different pallet types to registry',
+    ach_registry_pick_title: '⚡ Quick Fill',
+    ach_registry_pick_desc: 'Select a preset pallet from registry',
+    ach_night_shift_title: '🦉 Night Shift',
+    ach_night_shift_desc: 'Perform a calculation during night shift (22:00 – 06:00)',
+    ach_backup_done_title: '💾 Data Keeper',
+    ach_backup_done_desc: 'Export a JSON data backup',
+    ach_stats_viewed_title: '📊 Chief Analyst',
+    ach_stats_viewed_desc: 'Check out the Analytics tab'
   }
 }
 

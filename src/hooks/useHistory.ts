@@ -3,6 +3,17 @@ import type { HistoryItem, TabType } from '../types/calculator'
 
 const STORAGE_KEY = 'pallet_calc_history'
 
+function isSameInputs(
+  a: HistoryItem['inputs'] | undefined,
+  b: HistoryItem['inputs'] | undefined
+): boolean {
+  if (!a || !b) return false
+  const keysA = Object.keys(a) as (keyof HistoryItem['inputs'])[]
+  const keysB = Object.keys(b) as (keyof HistoryItem['inputs'])[]
+  if (keysA.length !== keysB.length) return false
+  return keysA.every((key) => a[key] === b[key])
+}
+
 export function useHistory() {
   const [history, setHistory] = useState<HistoryItem[]>(() => {
     if (typeof window === 'undefined') return []
@@ -36,9 +47,16 @@ export function useHistory() {
     const timestamp = `${hours}:${mins}`
 
     setHistory((prev) => {
-      // Avoid duplicate consecutive entry
-      if (prev.length > 0 && prev[0].title === title && prev[0].summary === summary) {
-        return prev
+      const lastTabEntry = prev.find((item) => item.tab === tab)
+      if (lastTabEntry && isSameInputs(lastTabEntry.inputs, inputs)) {
+        if (lastTabEntry.title === title && lastTabEntry.summary === summary) {
+          return prev
+        }
+        return prev.map((item) =>
+          item.id === lastTabEntry.id
+            ? { ...item, timestamp, title, summary }
+            : item
+        )
       }
 
       const newItem: HistoryItem = {

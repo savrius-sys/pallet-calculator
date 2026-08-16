@@ -10,6 +10,7 @@ interface LayerCalculatorFormProps {
   setRowSeconds: (val: string) => void
   rowsPerPallet: string
   setRowsPerPallet: (val: string) => void
+  onStopwatchUsed?: () => void
 }
 
 export function LayerCalculatorForm({
@@ -19,13 +20,15 @@ export function LayerCalculatorForm({
   rowSeconds,
   setRowSeconds,
   rowsPerPallet,
-  setRowsPerPallet
+  setRowsPerPallet,
+  onStopwatchUsed
 }: LayerCalculatorFormProps) {
   const [showStopwatch, setShowStopwatch] = useState<boolean>(false)
 
   const handleApplyTime = (mins: number, secs: number) => {
     setRowMinutes(String(mins))
     setRowSeconds(String(secs))
+    if (onStopwatchUsed) onStopwatchUsed()
   }
 
   return (

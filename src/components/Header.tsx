@@ -7,6 +7,9 @@ interface HeaderProps {
   onChangeLang: (lang: Language) => void
   historyCount: number
   onOpenHistory: () => void
+  unlockedAchievementsCount: number
+  totalAchievementsCount: number
+  onOpenAchievements: () => void
 }
 
 export function Header({
@@ -14,11 +17,26 @@ export function Header({
   lang,
   onChangeLang,
   historyCount,
-  onOpenHistory
+  onOpenHistory,
+  unlockedAchievementsCount,
+  totalAchievementsCount,
+  onOpenAchievements
 }: HeaderProps) {
   return (
     <div className="header-container compact-top-bar">
       <div className="header-actions">
+        <button
+          type="button"
+          className="achievements-btn"
+          onClick={onOpenAchievements}
+          title={t.achievementsTitle}
+        >
+          <span className="trophy-emoji">🏆</span>
+          <span className="achievements-badge">
+            {unlockedAchievementsCount}/{totalAchievementsCount}
+          </span>
+        </button>
+
         <button
           type="button"
           className="history-btn"

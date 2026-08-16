@@ -13,6 +13,7 @@ interface CalculatorFormProps {
   rows: string
   setRows: (val: string) => void
   registryRecords: PalletRecord[]
+  onRegistryPick?: () => void
 }
 
 export function CalculatorForm({
@@ -23,13 +24,15 @@ export function CalculatorForm({
   setPerPallet,
   rows,
   setRows,
-  registryRecords
+  registryRecords,
+  onRegistryPick
 }: CalculatorFormProps) {
   const [isPickerOpen, setIsPickerOpen] = useState<boolean>(false)
 
   const handleSelectRecord = (record: PalletRecord) => {
     if (record.quantity) setPerPallet(record.quantity)
     if (record.rows) setRows(record.rows)
+    if (onRegistryPick) onRegistryPick()
   }
 
   return (
