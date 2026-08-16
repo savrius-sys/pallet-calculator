@@ -42,6 +42,11 @@
   touch-action: manipulation;
 }
 
+html {
+  background: var(--bg);
+  height: 100%;
+}
+
 html, body {
   height: 100dvh;
   max-height: 100dvh;
@@ -188,7 +193,8 @@ h1 {
 }
 
 /* Modal Overlay & History */
-.modal-backdrop {
+.modal-backdrop,
+.modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(9, 9, 11, 0.75);
@@ -198,7 +204,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  padding: max(16px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
   animation: fadeIn 0.2s ease-out;
 }
 

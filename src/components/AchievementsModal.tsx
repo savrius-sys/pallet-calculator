@@ -38,14 +38,14 @@ export function AchievementsModal({
   )
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content achievements-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="achievements-modal-title">
             <span className="trophy-icon">🏆</span>
             <h3>{t.achievementsTitle}</h3>
           </div>
-          <button type="button" className="close-btn" onClick={onClose}>
+          <button type="button" className="modal-close-btn" onClick={onClose}>
             &times;
           </button>
         </div>
