@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pallet-calc-v1';
+const CACHE_NAME = 'pallet-calc-v2';
 const ASSETS = [
   '/',
   '/index.html',
@@ -27,19 +27,21 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) return;
+
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return (
-        cachedResponse ||
-        fetch(event.request).then((networkResponse) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            if (event.request.method === 'GET' && event.request.url.startsWith('http')) {
-              cache.put(event.request, networkResponse.clone());
-            }
-            return networkResponse;
+    fetch(event.request)
+      .then((networkResponse) => {
+        if (networkResponse && networkResponse.status === 200) {
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseClone);
           });
-        }).catch(() => cachedResponse)
-      );
-    })
+        }
+        return networkResponse;
+      })
+      .catch(() => {
+        return caches.match(event.request);
+      })
   );
 });
