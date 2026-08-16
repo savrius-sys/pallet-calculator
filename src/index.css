@@ -1778,7 +1778,7 @@ input::placeholder {
 /* Achievement Toast Notification */
 .achievement-toast-container {
   position: fixed;
-  top: 16px;
+  top: max(16px, calc(env(safe-area-inset-top) + 8px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999;
